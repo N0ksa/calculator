@@ -21,7 +21,6 @@ buttons.addEventListener("click", e => {
             display.textContent = keyValue;
         }else if (previousKey === "operator"){
             display.textContent = keyValue;
-            console.log(previousKey);
         }
          else{
             display.textContent = displayValue + keyValue;
@@ -30,13 +29,45 @@ buttons.addEventListener("click", e => {
 
 
 
-        calculator.dataset.previousKey = "operand";
+       
     }
 
     if (keyType === "operator"){
-        calculator.dataset.previousKey = "operator";
+        const operatorKeys = calculator.querySelectorAll('[data-type = "operator"]');
+        operatorKeys.forEach(operatorKey => operatorKey.dataset.state = "");
+        key.dataset.state = "selected";
+
+
+        calculator.dataset.firstNumber = displayValue;
+        calculator.dataset.operation = key.dataset.action;
+
+    }
+
+
+    if (keyType === "equal"){
+        const firstNumber = calculator.dataset.firstNumber;
+        const operator = calculator.dataset.operation;
+        const secondNumber = displayValue;
+        console.log(firstNumber, operator, secondNumber);
+        display.textContent = mathOperation(firstNumber, secondNumber, operator);
     }
     
 
+    calculator.dataset.previousKey = keyType;
+
 
 })
+
+
+
+function mathOperation(firstNumber, secondNumber, operator){
+    let result = "";
+    firstNumberTemp = parseInt(firstNumber);
+    secondNumberTemp = parseInt(secondNumber);
+    if (operator == "divide")  result = firstNumberTemp / secondNumberTemp;
+    if (operator == "modulo") result = firstNumberTemp % secondNumberTemp;
+    if (operator == "add") result = firstNumberTemp + secondNumberTemp;
+    if (operator == "subtract") result = firstNumberTemp - secondNumberTemp;
+    if (operator == "multiply") result = firstNumberTemp * secondNumberTemp;
+    return result;
+}
