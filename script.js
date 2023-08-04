@@ -1,22 +1,42 @@
+const buttons = document.querySelector(".buttons");
 const display = document.querySelector(".display");
-const buttons = document.querySelectorAll(".on-screen");
-const buttonAC = document.getElementById("ac");
-const buttonDEL = document.getElementById("del");
+const calculator = document.querySelector(".calculator")
 
 
-buttonAC.addEventListener("click", () =>{
-    display.textContent = "";
-} )
 
 
-buttonDEL.addEventListener("click", () =>{
-    display.textContent = display.textContent.slice(0, -1);
-} )
+
+buttons.addEventListener("click", e => {
+    if (!e.target.closest(".btn")) return;
+
+    const key = e.target;
+    const keyValue = key.textContent;
+    const displayValue = display.textContent;
+    const keyType = key.dataset.type;
+
+    const previousKey = calculator.dataset.previousKey;
+
+    if (keyType === "operand"){
+        if (displayValue === "0"){
+            display.textContent = keyValue;
+        }else if (previousKey === "operator"){
+            display.textContent = keyValue;
+            console.log(previousKey);
+        }
+         else{
+            display.textContent = displayValue + keyValue;
+    
+        }
 
 
-buttons.forEach(button =>{
-    button.addEventListener("click", () =>{
-        display.textContent += button.value;
-    })
+
+        calculator.dataset.previousKey = "operand";
+    }
+
+    if (keyType === "operator"){
+        calculator.dataset.previousKey = "operator";
+    }
+    
+
+
 })
-
