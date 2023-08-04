@@ -9,36 +9,36 @@
 <body>
     <div class="container">
         <div class="calculator">
-            <div class="display"></div>
+            <div class="display">0</div>
+            
             <div class="buttons">
                 <button class="btn" id="ac" data-action="clear">AC</button>
                 <button class="btn" id="del" data-action="delLast">DEL</button>
-                <button class="btn operator on-screen" data-action="modulo">%</button>
-                <button class="btn operator on-screen" data-action="divide">/</button>
+                <button class="btn" data-type="operator" data-action="modulo">%</button>
+                <button class="btn" data-action="divide">/</button>
+
+                <button class="btn" data-type="operand">7</button>
+                <button class="btn" data-type="operand">8</button>
+                <button class="btn" data-type="operand">9</button>
+                <button class="btn" data-type="operator"data-action="multiply">*</button>
+
+                <button class="btn" data-type="operand">4</button>
+                <button class="btn" data-type="operand">5</button>
+                <button class="btn" data-type="operand">6</button>
+                <button class="btn" data-type="operator" data-action="subtract">-</button>
+
+                <button class="btn" data-type="operand">1</button>
+                <button class="btn" data-type="operand">2</button>
+                <button class="btn" data-type="operand">3</button>
+                <button class="btn" data-type="operator" data-action="add">+</button>
+
+
+                <button class="btn" data-action="decimal">.</button>
+                <button class="btn" data-type="operand">0</button>
+                <button class="btn" id="equal" data-action="calculate">=</button>
             </div>
-            <div class="buttons">
-                <button class="btn operand on-screen">7</button>
-                <button class="btn operand on-screen">8</button>
-                <button class="btn operand on-screen">9</button>
-                <button class="btn operator on-screen" data-action="multiply">*</button>
-            </div>
-            <div class="buttons">
-                <button class="btn operand on-screen">4</button>
-                <button class="btn operand on-scree">5</button>
-                <button class="btn operand on-screen">6</button>
-                <button class="btn operator on-screen" data-action="subtract">-</button>
-            </div>
-            <div class="buttons">
-                <button class="btn operand on-screen">1</button>
-                <button class="btn operand on-screen">2</button>
-                <button class="btn operand on-screen">3</button>
-                <button class="btn operator on-screen" data-action="add">+</button>
-            </div>
-            <div class="buttons">
-                <button class="btn operand on-screen" data-action="decimal">.</button>
-                <button class="btn operand on-screen">0</button>
-                <button class="btn operator" id="equal" data-action="calculate">=</button>
-            </div>
+           
+         
         </div>
     </div>
 </body>
