@@ -64,3 +64,10 @@
     width: 180px;
     border-radius: 15px;
 }
+
+
+
+[data-state = "selected"]{
+    background-color: #c75876;
+    border-color: #E8BA40;
+}

@@ -53,6 +53,21 @@ buttons.addEventListener("click", e => {
     }
     
 
+    if (keyType === "clear"){
+       restartAll();
+    }
+
+
+    if (keyType === "del"){
+        if (display.textContent.length != 1){
+            display.textContent = displayValue.slice(0, -1);
+        }else{
+            display.textContent = "0";
+        }
+        
+    }
+
+
     calculator.dataset.previousKey = keyType;
 
 
@@ -70,4 +85,16 @@ function mathOperation(firstNumber, secondNumber, operator){
     if (operator == "subtract") result = firstNumberTemp - secondNumberTemp;
     if (operator == "multiply") result = firstNumberTemp * secondNumberTemp;
     return result;
+}
+
+
+
+
+function restartAll (){
+    delete calculator.dataset.operation;
+    delete calculator.dataset.firstNumber;
+    display.textContent = "0";
+    const operatorKeys = calculator.querySelectorAll('[data-type = "operator"]');
+    operatorKeys.forEach(operatorKey => delete operatorKey.dataset.state)
+
 }
