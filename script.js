@@ -33,13 +33,14 @@ buttons.addEventListener("click", e => {
     }
 
     if (keyType === "operator"){
-        const operatorKeys = calculator.querySelectorAll('[data-type = "operator"]');
-        operatorKeys.forEach(operatorKey => operatorKey.dataset.state = "");
+        removeSelected();
         key.dataset.state = "selected";
 
 
         calculator.dataset.firstNumber = displayValue;
         calculator.dataset.operation = key.dataset.action;
+
+        delete calculator.dataset.decimal;
 
     }
 
@@ -50,6 +51,8 @@ buttons.addEventListener("click", e => {
         const secondNumber = displayValue;
         console.log(firstNumber, operator, secondNumber);
         display.textContent = mathOperation(firstNumber, secondNumber, operator);
+        removeSelected();
+
     }
     
 
@@ -67,6 +70,17 @@ buttons.addEventListener("click", e => {
         
     }
 
+    if (keyType === "decimal"){
+        if (!calculator.dataset.decimal){
+            display.textContent = displayValue + keyValue;
+            calculator.dataset.decimal = true;
+        }else return;
+
+
+
+       
+    }
+
 
     calculator.dataset.previousKey = keyType;
 
@@ -77,8 +91,8 @@ buttons.addEventListener("click", e => {
 
 function mathOperation(firstNumber, secondNumber, operator){
     let result = "";
-    firstNumberTemp = parseInt(firstNumber);
-    secondNumberTemp = parseInt(secondNumber);
+    firstNumberTemp = parseFloat(firstNumber);
+    secondNumberTemp = parseFloat(secondNumber);
     if (operator == "divide")  result = firstNumberTemp / secondNumberTemp;
     if (operator == "modulo") result = firstNumberTemp % secondNumberTemp;
     if (operator == "add") result = firstNumberTemp + secondNumberTemp;
@@ -94,7 +108,15 @@ function restartAll (){
     delete calculator.dataset.operation;
     delete calculator.dataset.firstNumber;
     display.textContent = "0";
+    delete calculator.dataset.decimal;
+    removeSelected();
+
+}
+
+
+
+function removeSelected(){
     const operatorKeys = calculator.querySelectorAll('[data-type = "operator"]');
-    operatorKeys.forEach(operatorKey => delete operatorKey.dataset.state)
+    operatorKeys.forEach(operatorKey => operatorKey.dataset.state = "");
 
 }
